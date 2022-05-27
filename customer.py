@@ -44,8 +44,7 @@ class Customer:
         return self.goal.value
 
     def get_pay_sum(self) -> float:
-        pay = (self.credit * (1 + self.years * (BASE + self.mode))) / self.years
-        return pay
+        return (self.credit * (1 + self.years * (BASE + self.mode))) / self.years
 
     def is_retire(self) -> bool:
         """is person retired or not at the end of credit years
@@ -57,7 +56,7 @@ class Customer:
             return False
         elif self.sex == Sex.MALE and self.age + self.years >= RetiredAge.MALE.value:
             return False
-        elif self.sex != Sex.FEMALE and self.sex != Sex.MALE:
+        elif self.sex not in [Sex.FEMALE, Sex.MALE]:
             raise TypeError("something goes wrong")
         return True
 
